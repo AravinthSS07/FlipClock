@@ -1,0 +1,140 @@
+:root {
+  --background-color: #000;
+  --digit-background: #222;
+  --digit-color: #fff;
+  --separator-color: #fff;
+}
+
+body.light-theme {
+  --background-color: #f0f0f0;
+  --digit-background: #ddd;
+  --digit-color: #333;
+  --separator-color: #333;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--background-color);
+  color: var(--digit-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  transition: background-color 0.3s;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.clock-container {
+  margin-bottom: 30px;
+}
+
+.flip-clock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flip-clock-hours,
+.flip-clock-minutes,
+.flip-clock-seconds {
+  display: flex;
+}
+
+.flip-digit {
+  width: 120px;
+  height: 180px;
+  background-color: var(--digit-background);
+  color: var(--digit-color);
+  font-size: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  perspective: 400px;
+  box-shadow: 0 10px 15px -5px rgba(0, 0, 0, 0.5);
+  transition: transform 0.5s;
+}
+
+.flip-digit::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.flip-digit::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.flip-digit.flip {
+  animation: flip 0.5s ease-in-out;
+}
+
+@keyframes flip {
+  0% {
+    transform: rotateX(0deg);
+  }
+  50% {
+    transform: rotateX(90deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+.separator {
+  font-size: 150px;
+  margin: 0 10px;
+  color: var(--separator-color);
+}
+
+@media (max-width: 800px) {
+  .flip-digit {
+    width: 80px;
+    height: 120px;
+    font-size: 100px;
+  }
+  
+  .separator {
+    font-size: 100px;
+  }
+}
+
+@media (max-width: 600px) {
+  .flip-digit {
+    width: 60px;
+    height: 90px;
+    font-size: 80px;
+  }
+  
+  .separator {
+    font-size: 80px;
+    margin: 0 5px;
+  }
+}

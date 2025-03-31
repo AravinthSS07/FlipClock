@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Flip Clock Settings</title>
+  <style>
+    :root {
+      --background-color: #000;
+      --text-color: #fff;
+      --input-bg: #222;
+      --input-color: #fff;
+      --input-border: #444;
+    }
+    
+    body.light-theme {
+      --background-color: #f4f4f4;
+      --text-color: #333;
+      --input-bg: #fff;
+      --input-color: #333;
+      --input-border: #ccc;
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      transition: all 0.3s ease;
+    }
+    
+    h1 {
+      margin-bottom: 20px;
+    }
+    
+    .setting {
+      margin-bottom: 15px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    
+    select, button {
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid var(--input-border);
+      background-color: var(--input-bg);
+      color: var(--input-color);
+    }
+    
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      padding: 10px 15px;
+      margin-top: 15px;
+    }
+    
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .button-container {
+      margin-top: 15px;
+      display: flex;
+      gap: 10px;
+    }
+    
+    #back-btn {
+      background-color: #808080;
+    }
+  </style>
+</head>
+<body>
+  <h1>Settings</h1>
+  
+  <div class="setting">
+    <label for="theme">Theme:</label>
+    <select id="theme">
+      <option value="dark">Dark</option>
+      <option value="light">Light</option>
+    </select>
+  </div>
+  
+  <div class="setting">
+    <label>
+      <input type="checkbox" id="use24Hour"> Use 24-hour format
+    </label>
+  </div>
+  
+  <div class="setting">
+    <label>
+      <input type="checkbox" id="startup"> Start app on system startup
+    </label>
+  </div>
+  
+  <div class="button-container">
+    <button id="back-btn">Back</button>
+    <button id="save-btn">Save Settings</button>
+  </div>
+  
+  <script src="settings.js"></script>
+</body>
+</html>
