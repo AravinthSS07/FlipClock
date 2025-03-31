@@ -1,4 +1,3 @@
-// main.js
 const { app, BrowserWindow, ipcMain, Menu, Tray, nativeImage, powerSaveBlocker } = require('electron');
 const path = require('path');
 const Store = require('electron-store').default;
@@ -20,8 +19,9 @@ function createMainWindow() {
     width: 800,
     height: 600,
     webPreferences: {
-      nodeIntegration: true,
-      contextIsolation: false
+      preload: path.join(__dirname, 'preload.js'),
+      nodeIntegration: false,
+      contextIsolation: true
     },
     icon: path.join(__dirname, 'assets/icon.png')
   });
@@ -69,32 +69,6 @@ function showClock() {
     mainWindow.loadFile('index.html');
   }
 }
-
-/*
-function createSettingsWindow() {
-  if (settingsWindow) {
-    settingsWindow.focus();
-    return;
-  }
-
-  settingsWindow = new BrowserWindow({
-    width: 400,
-    height: 300,
-    parent: mainWindow,
-    modal: true,
-    webPreferences: {
-      nodeIntegration: true,
-      contextIsolation: false
-    }
-  });
-
-  settingsWindow.loadFile('settings.html');
-
-  settingsWindow.on('closed', () => {
-    settingsWindow = null;
-  });
-}
-*/
 
 // Create application menu
 function createAppMenu() {
@@ -223,5 +197,6 @@ ipcMain.on('save-settings', (event, settings) => {
   // Notify main window about theme change
   if (mainWindow) {
     mainWindow.webContents.send('theme-changed', settings.theme);
+    mainWindow.webContents.send('time-format-changed', settings.use24Hour);
   }
 });

@@ -1,6 +1,3 @@
-const { ipcRenderer } = require('electron');
-
-// DOM elements
 const themeSelect = document.getElementById('theme');
 const startupCheckbox = document.getElementById('startup');
 const use24HourCheckbox = document.getElementById('use24Hour');
@@ -8,7 +5,7 @@ const saveBtn = document.getElementById('save-btn');
 const backBtn = document.getElementById('back-btn');
 
 // Load current settings
-const settings = ipcRenderer.sendSync('get-settings');
+const settings = window.electronAPI.getSettings();
 themeSelect.value = settings.theme;
 startupCheckbox.checked = settings.startOnStartup;
 use24HourCheckbox.checked = settings.use24Hour;
@@ -23,13 +20,13 @@ saveBtn.addEventListener('click', () => {
     use24Hour: use24HourCheckbox.checked
   };
   
-  ipcRenderer.send('save-settings', newSettings);
-  ipcRenderer.send('show-clock');
+  window.electronAPI.saveSettings(newSettings);
+  window.electronAPI.showClock();
 });
 
 // Back to clock without saving
 backBtn.addEventListener('click', () => {
-  ipcRenderer.send('show-clock');
+  window.electronAPI.showClock();
 });
 
 function applyTheme(theme){

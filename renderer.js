@@ -1,6 +1,3 @@
-const { ipcRenderer } = require('electron');
-
-// DOM elements
 const hourTens = document.getElementById('hour-tens');
 const hourOnes = document.getElementById('hour-ones');
 const minuteTens = document.getElementById('minute-tens');
@@ -9,7 +6,7 @@ const secondTens = document.getElementById('second-tens');
 const secondOnes = document.getElementById('second-ones');
 
 // Get settings
-const settings = ipcRenderer.sendSync('get-settings');
+const settings = window.electronAPI.getSettings();
 applyTheme(settings.theme);
 let use24Hour = settings.use24Hour;
 
@@ -18,12 +15,12 @@ updateClock();
 setInterval(updateClock, 1000);
 
 // Listen for theme changes
-ipcRenderer.on('theme-changed', (event, theme) => {
+window.electronAPI.onThemeChanged((event, theme) => {
   applyTheme(theme);
 });
 
 // Listen for time format changes
-ipcRenderer.on('time-format-changed', (event, format24Hour) => {
+window.electronAPI.onTimeFormatChanged((event, format24Hour) => {
   use24Hour = format24Hour;
   updateClock(); // Update display immediately
 });
