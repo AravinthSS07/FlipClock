@@ -1,6 +1,6 @@
 const { app, BrowserWindow, ipcMain, Menu, Tray, nativeImage, powerSaveBlocker } = require('electron');
 const path = require('path');
-const Store = require('electron-store').default;
+const { default: Store } = require('electron-store');
 const store = new Store();
 
 // Initialize store for settings
