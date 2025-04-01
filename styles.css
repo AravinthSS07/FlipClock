@@ -138,3 +138,176 @@ body {
     margin: 0 5px;
   }
 }
+
+/* Cyberpunk Theme Variables */
+:root {
+  --background-color: #000;
+  --digit-background: #222;
+  --digit-color: #fff;
+  --separator-color: #fff;
+}
+
+body.light-theme {
+  --background-color: #f0f0f0;
+  --digit-background: #ddd;
+  --digit-color: #333;
+  --separator-color: #333;
+}
+
+/* Add Cyberpunk Theme */
+body.cyberpunk-style {
+  --background-color: #0a0a1e;
+  --digit-background: #1f1f3f;
+  --digit-color: #00ffff;
+  --separator-color: #ff00ff;
+}
+
+/* Cyberpunk specific styling */
+.cyberpunk-style .flip-digit {
+  border: 2px solid #ff00ff;
+  box-shadow: 0 0 15px #00ffff, 0 0 25px rgba(0, 255, 255, 0.3);
+  text-shadow: 0 0 10px #00ffff;
+  font-family: 'Orbitron', sans-serif, monospace;
+}
+
+.cyberpunk-style .separator {
+  text-shadow: 0 0 10px #ff00ff;
+}
+
+.cyberpunk-style .flip-digit::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ff00ff, transparent, #00ffff);
+}
+
+.cyberpunk-style .flip-digit::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #00ffff, transparent, #ff00ff);
+}
+
+.cyberpunk-style .flip-clock::before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  color: #ff00ff;
+  text-shadow: 0 0 5px #ff00ff;
+  font-family: monospace;
+}
+
+/* Add Orbitron font for cyberpunk style */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+/* Import fonts for classical themes */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+
+/* Vintage Theme */
+body.vintage-style {
+  --background-color: #f5e8c9;
+  --digit-background: #d9c9a3;
+  --digit-color: #59321c;
+  --separator-color: #75593e;
+}
+
+.vintage-style .flip-digit {
+  border: 2px solid #75593e;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  font-family: 'Courier New', monospace;
+  border-radius: 5px;
+  background: linear-gradient(to bottom, #e6d7b7, #d9c9a3);
+  position: relative;
+}
+
+.vintage-style .separator {
+  color: #75593e;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.vintage-style .flip-digit::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: rgba(117, 89, 62, 0.3);
+}
+
+/* Elegant Theme */
+body.elegant-style {
+  --background-color: #14151f;
+  --digit-background: #2c2e3e;
+  --digit-color: #e0d6cc;
+  --separator-color: #c0aa91;
+}
+
+.elegant-style .flip-digit {
+  border: 3px solid #c0aa91;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  font-family: 'Playfair Display', serif;
+  background: radial-gradient(ellipse at center, #2c2e3e, #1f2030);
+  border-radius: 10px;
+}
+
+.elegant-style .separator {
+  color: #c0aa91;
+  font-family: 'DM Serif Display', serif;
+  font-weight: normal;
+  text-shadow: 0 0 5px rgba(192, 170, 145, 0.5);
+}
+
+.elegant-style .flip-digit::before {
+  content: 'Ⅱ';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 16px;
+  color: #c0aa91;
+  opacity: 0.5;
+}
+
+.elegant-style .flip-digit::after {
+  content: 'Ⅷ';
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 16px;
+  color: #c0aa91;
+  opacity: 0.5;
+}
+
+.elegant-style .flip-clock::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #c0aa91, transparent);
+}
+
+.elegant-style .flip-clock::after {
+  content: '';
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #c0aa91, transparent);
+}

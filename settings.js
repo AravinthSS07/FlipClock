@@ -1,6 +1,7 @@
 const themeSelect = document.getElementById('theme');
 const startupCheckbox = document.getElementById('startup');
 const use24HourCheckbox = document.getElementById('use24Hour');
+const clockStyleSelect = document.getElementById('clockStyle');
 const saveBtn = document.getElementById('save-btn');
 const backBtn = document.getElementById('back-btn');
 
@@ -9,6 +10,7 @@ const settings = window.electronAPI.getSettings();
 themeSelect.value = settings.theme;
 startupCheckbox.checked = settings.startOnStartup;
 use24HourCheckbox.checked = settings.use24Hour;
+clockStyleSelect.value = settings.clockStyle;
 
 applyTheme(settings.theme);
 
@@ -17,7 +19,8 @@ saveBtn.addEventListener('click', () => {
   const newSettings = {
     theme: themeSelect.value,
     startOnStartup: startupCheckbox.checked,
-    use24Hour: use24HourCheckbox.checked
+    use24Hour: use24HourCheckbox.checked,
+    clockStyle: clockStyleSelect.value
   };
   
   window.electronAPI.saveSettings(newSettings);

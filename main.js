@@ -13,6 +13,7 @@ let tray = null;
 if (!store.has('theme')) store.set('theme', 'dark');
 if (!store.has('startOnStartup')) store.set('startOnStartup', false);
 if (!store.has('use24Hour')) store.set('use24Hour', true);
+if (!store.has('clockStyle')) store.set('clockStyle', 'default');
 
 function createMainWindow() {
   mainWindow = new BrowserWindow({
@@ -180,7 +181,8 @@ ipcMain.on('get-settings', (event) => {
   event.returnValue = {
     theme: store.get('theme'),
     startOnStartup: store.get('startOnStartup'),
-    use24Hour: store.get('use24Hour')
+    use24Hour: store.get('use24Hour'),
+    clockStyle: store.get('clockStyle')
   };
 });
 
@@ -188,6 +190,7 @@ ipcMain.on('save-settings', (event, settings) => {
   store.set('theme', settings.theme);
   store.set('startOnStartup', settings.startOnStartup);
   store.set('use24Hour', settings.use24Hour);
+  store.set('clockStyle', settings.clockStyle);
  
   // Update startup settings
   app.setLoginItemSettings({
@@ -198,5 +201,6 @@ ipcMain.on('save-settings', (event, settings) => {
   if (mainWindow) {
     mainWindow.webContents.send('theme-changed', settings.theme);
     mainWindow.webContents.send('time-format-changed', settings.use24Hour);
+    mainWindow.webContents.send('style-changed', settings.clockStyle);
   }
 });

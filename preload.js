@@ -5,5 +5,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
   saveSettings: (settings) => ipcRenderer.send('save-settings', settings),
   showClock: () => ipcRenderer.send('show-clock'),
   onThemeChanged: (callback) => ipcRenderer.on('theme-changed', callback),
-  onTimeFormatChanged: (callback) => ipcRenderer.on('time-format-changed', callback)
+  onTimeFormatChanged: (callback) => ipcRenderer.on('time-format-changed', callback),
+  onStyleChanged: (callback) => ipcRenderer.on('style-changed', callback)
 })

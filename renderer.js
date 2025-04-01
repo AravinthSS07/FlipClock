@@ -8,6 +8,7 @@ const secondOnes = document.getElementById('second-ones');
 // Get settings
 const settings = window.electronAPI.getSettings();
 applyTheme(settings.theme);
+applyStyle(settings.clockStyle);
 let use24Hour = settings.use24Hour;
 
 // Initialize clock
@@ -23,6 +24,11 @@ window.electronAPI.onThemeChanged((event, theme) => {
 window.electronAPI.onTimeFormatChanged((event, format24Hour) => {
   use24Hour = format24Hour;
   updateClock(); // Update display immediately
+});
+
+// Clock style changes
+window.electronAPI.onStyleChanged((event, style) => {
+  applyStyle(style);
 });
 
 function updateClock() {
@@ -83,5 +89,21 @@ function applyTheme(theme) {
     document.body.classList.add('light-theme');
   } else {
     document.body.classList.remove('light-theme');
+  }
+}
+
+function applyStyle(style) {
+  // Remove all style classes first
+  document.body.classList.remove('cyberpunk-style');
+  document.body.classList.remove('vintage-style');
+  document.body.classList.remove('elegant-style');
+  
+  // Apply the selected style
+  if (style === 'cyberpunk') {
+    document.body.classList.add('cyberpunk-style');
+  } else if (style === 'vintage') {
+    document.body.classList.add('vintage-style');
+  } else if (style === 'elegant') {
+    document.body.classList.add('elegant-style');
   }
 }
